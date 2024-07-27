@@ -1,0 +1,12 @@
+---
+- name: ansible-docker automation
+  hosts: all
+  become: true
+  tasks:
+   - name: install python3-pip
+     apt:
+      name: python3-pip
+      state: present
+      update_cache: yes
+   - name: run docker.py
+     shell: pip install docker.py

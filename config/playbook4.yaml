@@ -1,0 +1,13 @@
+---
+- name: pull docker images
+  hosts: apps 
+  become: true
+  tasks:
+   - name: pull images
+     docker_image:
+      name: sonatype/nexus3
+      source: pull
+   - name: pull images
+     docker_image:
+      name: sonarqube
+      source: pull

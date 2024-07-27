@@ -1,0 +1,19 @@
+- name: install tools
+  hosts: jenkins
+  become: true
+  tasks:
+   - name: copy the scripts to jenkins
+     copy:
+      src: "{{item}}"
+      dest: /home/ubuntu
+      mode: 0777
+     with_items:
+      - jenkins.sh
+      - docker.sh
+      - trivy.sh
+   - name: install jenkins, trivy and docker
+     shell: "{{item}}"
+     with_items:
+      - /home/ubuntu/jenkins.sh
+      - /home/ubuntu/docker.sh
+      - /home/ubuntu/trivy.sh

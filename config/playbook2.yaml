@@ -1,0 +1,13 @@
+---
+- name: install tools
+  hosts: apps
+  become: true
+  tasks:
+   - name: copy the scripts to apps
+     copy:
+      src: docker.sh
+      dest: /home/ubuntu
+      mode: 0777
+   - name: install docker
+     shell: /home/ubuntu/docker.sh
+...

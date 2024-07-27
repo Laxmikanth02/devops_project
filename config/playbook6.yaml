@@ -1,0 +1,17 @@
+---
+- name: Deploy sonarqube Container
+  hosts: apps
+  become: yes
+  tasks:
+    - name: Create and run sonarqube container
+      community.docker.docker_container:
+        name: sonarqube
+        image: sonarqube
+        state: started
+        restart_policy: always
+        ports:
+          - "9000:9000"  # Expose Nexus port
+    - name: Ensure sonarqube is running
+      community.docker.docker_container_info:
+        name: sonarqube
+      register: sonar_info
